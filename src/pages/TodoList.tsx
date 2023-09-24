@@ -14,6 +14,7 @@ import { TodoItem } from '../store/types';
 import { toggleCheck } from '../store/slices/todoSlice';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Link } from 'react-router-dom';
 
 export const TodoList = () => {
   const { list } = useSelector((state: RootState) => state.todo);
@@ -41,9 +42,12 @@ export const TodoList = () => {
               key={item.id}
               secondaryAction={
                 <div className="todo-list__item-actions">
-                  <IconButton edge="end" aria-label="edit">
-                    <EditIcon />
-                  </IconButton>
+                  <Link to={'/todo-form/' + item.id}>
+                    <IconButton edge="end" aria-label="edit">
+                      <EditIcon />
+                    </IconButton>
+                  </Link>
+
                   <IconButton edge="end" aria-label="delete">
                     <DeleteIcon />
                   </IconButton>
