@@ -14,6 +14,7 @@ import { TodoItem } from '../store/types';
 import { toggleCheck } from '../store/slices/todoSlice';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
 import { Link } from 'react-router-dom';
 
 export const TodoList = () => {
@@ -39,6 +40,7 @@ export const TodoList = () => {
           {list.map((item: TodoItem) => (
             <ListItem
               disablePadding
+              className="todo-list__item"
               key={item.id}
               secondaryAction={
                 <div className="todo-list__item-actions">
@@ -63,10 +65,23 @@ export const TodoList = () => {
                     disableRipple
                   />
                 </ListItemIcon>
-                <ListItemText primary={item.text} />
+                <ListItemText primary={item.title} secondary={item.text} />
               </ListItemButton>
             </ListItem>
           ))}
+          {/* Add new todo */}
+          <Link to="/todo-form">
+            <ListItem
+              disablePadding
+              className="todo-list__item todo-list__item-add"
+            >
+              <ListItemButton dense alignItems="center">
+                <ListItemIcon>
+                  <AddIcon fontSize="large"></AddIcon>
+                </ListItemIcon>
+              </ListItemButton>
+            </ListItem>
+          </Link>
         </List>
       </div>
 

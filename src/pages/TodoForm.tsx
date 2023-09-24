@@ -1,21 +1,32 @@
 import { Button, Container, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import { RootState } from '../store/store';
+import { add } from '../store/slices/todoSlice';
+import { TodoFormData } from '../store/types';
 
 export const TodoForm = () => {
+  const { list } = useSelector((state: RootState) => state.todo);
   const dispatch = useDispatch();
 
-  const [text, setText] = useState('My todo #');
+  const navigate = useNavigate();
+
+  const [title, setTitle] = useState('');
+  const [text, setText] = useState('');
   const { todoId } = useParams();
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setText(event.target.value);
+  const addTodo = (data: TodoFormData) => {
+    dispatch(add(data));
+    navigate('/');
   };
 
   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
-    alert('A name was submitted: ');
+    addTodo({
+      title,
+      text,
+    });
     event.preventDefault();
   };
 
@@ -34,10 +45,21 @@ export const TodoForm = () => {
           <form className="todo-form" onSubmit={handleSubmit}>
             <TextField
               id="outlined-basic"
+              label="Title"
+              variant="outlined"
+              value={title}
+              onChange={(event) => {
+                setTitle(event.target.value);
+              }}
+            />
+            <TextField
+              id="outlined-basic"
               label="Text"
               variant="outlined"
               value={text}
-              onChange={handleChange}
+              onChange={(event) => {
+                setText(event.target.value);
+              }}
             />
             <Button variant="contained" type="submit">
               Submit
