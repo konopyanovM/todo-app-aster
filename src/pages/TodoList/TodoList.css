@@ -1,0 +1,30 @@
+.todo {
+  min-width: 600px;
+
+  padding: 20px 0;
+
+  border-radius: 4px;
+  background-color: var(--color-white);
+}
+
+.todo-title {
+  text-align: center;
+}
+
+.todo-list-wrapper {
+  margin: 1rem 0;
+  border-top: 1px solid var(--color-lines);
+  border-bottom: 1px solid var(--color-lines);
+}
+
+.todo-list__item-actions {
+  display: flex;
+  gap: 20px;
+}
+
+.todo-footer {
+  padding: 0 1rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
