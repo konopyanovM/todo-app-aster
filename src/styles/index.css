@@ -2,3 +2,6 @@
 @import "./settings.css";
 
 @import "./utils/variables.css";
+
+@import "./common/common.css";
+@import "./components/components.css";

@@ -1,4 +1,3 @@
-import './Layout.css';
 import { LayoutProps } from './types';
 import { Theme, useTheme } from '@mui/material';
 

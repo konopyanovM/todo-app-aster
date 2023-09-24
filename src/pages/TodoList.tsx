@@ -1,6 +1,4 @@
-import './TodoList.css';
 import {
-  Button,
   Checkbox,
   IconButton,
   List,
@@ -11,9 +9,9 @@ import {
   Typography,
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import { TodoItem } from '../../store/types';
-import { toggleCheck } from '../../store/slices/todoSlice';
+import { RootState } from '../store/store';
+import { TodoItem } from '../store/types';
+import { toggleCheck } from '../store/slices/todoSlice';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -35,7 +33,7 @@ export const TodoList = () => {
       </div>
 
       {/* List */}
-      <div className="todo-list-wrapper">
+      <div className="todo-body">
         <List className="todo-list">
           {list.map((item: TodoItem) => (
             <ListItem
@@ -69,12 +67,7 @@ export const TodoList = () => {
       </div>
 
       {/* Footer */}
-      <div className="todo-footer">
-        <Button variant="contained" color="error">
-          Deleted
-        </Button>
-        <Button variant="contained">Completed</Button>
-      </div>
+      <div className="todo-footer"></div>
     </div>
   );
 };
