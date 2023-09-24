@@ -9,7 +9,7 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<TodoList />}></Route>
-          <Route path="/todo-form/:id?" element={<TodoForm />}></Route>
+          <Route path="/todo-form/:todoId?" element={<TodoForm />}></Route>
         </Routes>
       </Layout>
     </div>

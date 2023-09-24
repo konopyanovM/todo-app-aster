@@ -10,7 +10,4 @@ export interface TodoItem {
   isCompleted: boolean;
 }
 
-export interface TodoFormData {
-  title: string;
-  text: string;
-}
+export interface TodoFormData extends Omit<TodoItem, 'id' | 'isCompleted'> {}

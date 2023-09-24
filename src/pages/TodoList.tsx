@@ -9,20 +9,27 @@ import {
   Typography,
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store/store';
 import { TodoItem } from '../store/types';
-import { toggleCheck } from '../store/slices/todoSlice';
+import {
+  remove,
+  selectTodoList,
+  toggleComplete,
+} from '../store/slices/todoSlice';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import { Link } from 'react-router-dom';
 
 export const TodoList = () => {
-  const { list } = useSelector((state: RootState) => state.todo);
+  const list = useSelector(selectTodoList);
   const dispatch = useDispatch();
 
-  const handleCheck = (value: number) => () => {
-    dispatch(toggleCheck({ id: value }));
+  const handleCheck = (id: number) => () => {
+    dispatch(toggleComplete({ id }));
+  };
+
+  const handleRemove = (id: number) => () => {
+    dispatch(remove({ id }));
   };
 
   return (
@@ -50,7 +57,11 @@ export const TodoList = () => {
                     </IconButton>
                   </Link>
 
-                  <IconButton edge="end" aria-label="delete">
+                  <IconButton
+                    edge="end"
+                    aria-label="delete"
+                    onClick={handleRemove(item.id)}
+                  >
                     <DeleteIcon />
                   </IconButton>
                 </div>

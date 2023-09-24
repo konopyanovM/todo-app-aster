@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { TodoFormData, TodoState } from '../types';
+import { TodoFormData, TodoItem, TodoState } from '../types';
+import { RootState } from '../store';
 
 const initialState: TodoState = {
   list: [
@@ -31,15 +32,32 @@ export const todoSlice = createSlice({
   reducers: {
     add: (state, action: PayloadAction<TodoFormData>) => {
       state.list.push({
-        id: state.length + 1,
+        id: ++state.length,
         title: action.payload.title,
         text: action.payload.text,
         isCompleted: false,
       });
+      console.log(state.length);
     },
-    update: (state) => {},
-    remove: (state) => {},
-    toggleCheck: (state, action: PayloadAction<{ id: number }>) => {
+    update: (state, action: PayloadAction<TodoItem>) => {
+      state.list = state.list.map((item) => {
+        if (item.id === action.payload.id) {
+          return {
+            id: action.payload.id,
+            title: action.payload.title,
+            text: action.payload.text,
+            isCompleted: action.payload.isCompleted,
+          };
+        }
+        return item;
+      });
+    },
+    remove: (state, action: PayloadAction<{ id: number }>) => {
+      state.list = state.list.filter((item) => {
+        return item.id !== action.payload.id;
+      });
+    },
+    toggleComplete: (state, action: PayloadAction<{ id: number }>) => {
       state.list = state.list.map((item) => {
         if (item.id === action.payload.id) {
           item.isCompleted = !item.isCompleted;
@@ -50,6 +68,12 @@ export const todoSlice = createSlice({
   },
 });
 
-export const { add, update, remove, toggleCheck } = todoSlice.actions;
+// Selectors
+export const selectTodoList = (state: RootState) => state.todo.list;
+export const selectTodoItem = (id: string) => (state: RootState) => {
+  if (id) return state.todo.list.find((item) => item.id === Number(id));
+};
+
+export const { add, update, remove, toggleComplete } = todoSlice.actions;
 
 export default todoSlice.reducer;
