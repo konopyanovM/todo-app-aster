@@ -3,6 +3,7 @@ import todoReducer from './slices/todoSlice';
 
 export const store = configureStore({
   reducer: { todo: todoReducer },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

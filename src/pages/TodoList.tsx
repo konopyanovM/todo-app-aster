@@ -13,6 +13,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { TodoItem } from '../store/types';
 import {
+  getAsync,
   remove,
   selectTodoList,
   toggleComplete,
@@ -22,7 +23,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import { Link } from 'react-router-dom';
 import { Settings } from '@mui/icons-material';
-import { ReactElement } from 'react';
+import { ReactElement, useEffect } from 'react';
 
 export const TodoList = (): ReactElement => {
   const list = useSelector(selectTodoList);
@@ -35,6 +36,10 @@ export const TodoList = (): ReactElement => {
   const handleRemove = (id: number) => () => {
     dispatch(remove({ id }));
   };
+
+  useEffect(() => {
+    dispatch(getAsync());
+  }, []);
 
   return (
     <Paper className="todo">

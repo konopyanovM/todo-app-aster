@@ -1,6 +1,12 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import {
+  AnyAction,
+  PayloadAction,
+  ThunkDispatch,
+  createSlice,
+} from '@reduxjs/toolkit';
 import { TodoFormData, TodoItem, TodoState } from '../types';
 import { RootState } from '../store';
+import axios from 'axios';
 
 const initialState: TodoState = {
   list: [
@@ -72,6 +78,14 @@ export const selectTodoList = (state: RootState) => state.todo.list;
 export const selectTodoItem = (id: string) => (state: RootState) => {
   if (id) return state.todo.list.find((item) => item.id === Number(id));
 };
+
+// Actions
+export const getAsync =
+  (): any => async (dispatch: ThunkDispatch<TodoState, void, AnyAction>) => {
+    axios.get('/todos').then((res: any) => {
+      console.log(res);
+    });
+  };
 
 export const { add, update, remove, toggleComplete } = todoSlice.actions;
 

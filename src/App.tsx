@@ -3,8 +3,11 @@ import { Layout } from './layout/Layout';
 import { TodoList } from './pages/TodoList';
 import { TodoForm } from './pages/TodoForm';
 import { TodoSettings } from './pages/TodoSettings';
+import axios from 'axios';
 
 function App() {
+  axios.defaults.baseURL = process.env.REACT_APP_API;
+
   return (
     <div className="App">
       <Layout>
