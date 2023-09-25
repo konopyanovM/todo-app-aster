@@ -1,4 +1,5 @@
 import {
+  Button,
   Checkbox,
   IconButton,
   List,
@@ -6,6 +7,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Paper,
   Typography,
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,6 +21,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import { Link } from 'react-router-dom';
+import { Settings } from '@mui/icons-material';
 
 export const TodoList = () => {
   const list = useSelector(selectTodoList);
@@ -33,7 +36,7 @@ export const TodoList = () => {
   };
 
   return (
-    <div className="todo">
+    <Paper className="todo">
       {/* Header */}
       <div className="todo-header">
         <Typography variant="h4" component="h1" className="todo-title">
@@ -97,7 +100,13 @@ export const TodoList = () => {
       </div>
 
       {/* Footer */}
-      <div className="todo-footer"></div>
-    </div>
+      <div className="todo-footer">
+        <Link to="/settings">
+          <Button variant="contained" endIcon={<Settings />}>
+            Settings
+          </Button>
+        </Link>
+      </div>
+    </Paper>
   );
 };

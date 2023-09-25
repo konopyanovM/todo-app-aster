@@ -3,10 +3,11 @@ import {
   Checkbox,
   Container,
   FormControlLabel,
+  Paper,
   TextField,
   Typography,
 } from '@mui/material';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -34,7 +35,7 @@ export const TodoForm = () => {
     navigate('/');
   };
 
-  const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: ChangeEvent<HTMLFormElement>) => {
     if (todoId) {
       updateTodo({
         id: Number(todoId),
@@ -52,7 +53,7 @@ export const TodoForm = () => {
   };
 
   return (
-    <div className="todo">
+    <Paper className="todo">
       {/* Header */}
       <div className="todo-header">
         <Typography variant="h4" component="h1" className="todo-title">
@@ -110,6 +111,6 @@ export const TodoForm = () => {
           </Button>
         </Link>
       </div>
-    </div>
+    </Paper>
   );
 };
