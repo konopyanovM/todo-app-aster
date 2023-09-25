@@ -1,7 +1,8 @@
+import { ReactElement } from 'react';
 import { LayoutProps } from './types';
 import { Theme, useTheme } from '@mui/material';
 
-export const Layout = ({ children }: LayoutProps) => {
+export const Layout = ({ children }: LayoutProps): ReactElement => {
   const theme: Theme = useTheme();
 
   return (

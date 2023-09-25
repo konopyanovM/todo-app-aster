@@ -4,10 +4,9 @@ import {
   ThemeProvider,
   createTheme,
 } from '@mui/material';
-import { createContext, useMemo, useState } from 'react';
+import { ReactElement, createContext, useMemo, useState } from 'react';
 import { getDesignTokens } from '../../settings';
-
-const THEME_MODE = 'themeMode';
+import { THEME_MODE_KEY } from '../../settings/constants';
 
 export const ThemeModeContext = createContext<{
   mode: PaletteMode;
@@ -17,11 +16,11 @@ export const ThemeModeContext = createContext<{
   set: () => {},
 });
 
-export const AppThemeProvider = ({ children }: any) => {
+export const AppThemeProvider = ({ children }: any): ReactElement => {
   const [mode, setMode] = useState<PaletteMode>(getMode());
 
   const set = (mode: PaletteMode) => {
-    localStorage.setItem(THEME_MODE, mode);
+    localStorage.setItem(THEME_MODE_KEY, mode);
     setMode(mode);
   };
 
@@ -38,5 +37,5 @@ export const AppThemeProvider = ({ children }: any) => {
 };
 
 function getMode(): PaletteMode {
-  return (localStorage.getItem(THEME_MODE) as PaletteMode) ?? 'light';
+  return (localStorage.getItem(THEME_MODE_KEY) as PaletteMode) ?? 'light';
 }

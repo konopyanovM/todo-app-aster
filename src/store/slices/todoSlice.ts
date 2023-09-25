@@ -37,7 +37,6 @@ export const todoSlice = createSlice({
         text: action.payload.text,
         isCompleted: false,
       });
-      console.log(state.length);
     },
     update: (state, action: PayloadAction<TodoItem>) => {
       state.list = state.list.map((item) => {

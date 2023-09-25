@@ -5,11 +5,11 @@ import {
   Switch,
   Typography,
 } from '@mui/material';
-import { ChangeEvent, useContext } from 'react';
+import { ChangeEvent, ReactElement, useContext } from 'react';
 import { ThemeModeContext } from '../components/hocs/AppThemeProvider';
 import { Link } from 'react-router-dom';
 
-export const TodoSettings = () => {
+export const TodoSettings = (): ReactElement => {
   const themeMode = useContext(ThemeModeContext);
 
   const toggleMode = (event: ChangeEvent<HTMLInputElement>) => {

@@ -22,8 +22,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import { Link } from 'react-router-dom';
 import { Settings } from '@mui/icons-material';
+import { ReactElement } from 'react';
 
-export const TodoList = () => {
+export const TodoList = (): ReactElement => {
   const list = useSelector(selectTodoList);
   const dispatch = useDispatch();
 
